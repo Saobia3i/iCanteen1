@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png"; // iCanteen logo
 import dash from "../../assets/dash.jpg";
 import bg from "../../assets/bg.jpg";
 import burger from "../../assets/burger.jpg";
-import fries from "../../assets/fries.jpg";
+import fries from "../../assets/Fries.jpg";
 import pizza from "../../assets/pizza.jpg";
 import smoothie from "../../assets/smoothie.jpg";
 import aboutUs from "../../assets/about us.jpg";
