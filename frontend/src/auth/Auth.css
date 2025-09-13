@@ -1,0 +1,167 @@
+/* Shared Styles for Login.css and Register.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8; /* Light background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.login-container, .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFD700, #FFA500); /* Warm, food-related gradient */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-card, .register-card {
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    backdrop-filter: blur(5px); /* Frosty glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+    margin-bottom: 25px;
+}
+
+.logo img {
+    width: 80px; /* Adjust logo size */
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.logo h1 {
+    font-size: 2em;
+    color: #E67E22; /* Orange-brown for text */
+    margin: 0;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.role-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.role-toggle button {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    background-color: transparent;
+    color: #666;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.role-toggle button.active {
+    background-color: #E67E22; /* Active button color */
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #E67E22;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+}
+
+.login-button, .register-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #F39C12; /* A more vibrant orange for primary action */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+}
+
+.login-button:hover, .register-button:hover {
+    background-color: #E67E22;
+    transform: translateY(-2px);
+}
+
+.forgot-password, .login-link, .register-link {
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.forgot-password a, .login-link a, .register-link a {
+    color: #E67E22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-password a:hover, .login-link a:hover, .register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .login-card, .register-card {
+        padding: 30px 20px;
+        margin: 15px;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    .role-toggle button {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .form-group input, .login-button, .register-button {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
