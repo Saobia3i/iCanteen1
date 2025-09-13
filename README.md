@@ -1,6 +1,6 @@
-![SnackBox Logo](assets/logo.png)
+(assets/logo.png)
 
-iCanteen: A Smart Canteen Management System
+🍱iCanteen: A Smart Canteen Management System
 
 Course: CSE 3100
 A web-based system to streamline the operations of institutional canteens — from ordering to staff management and real-time analytics.
