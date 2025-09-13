@@ -1,107 +1,122 @@
-import React from "react";
+import React, { useState } from 'react';
+import { Box, Button, Grid, Card, CardContent, Typography, Avatar } from '@mui/material';
+import staffLogo from '../../assets/logo.png';
+import Order from './Order';
+import Shifts from './Shifts';
+import Profile from './Profile';
+import sBg from "../../assets/s-bg.jpg";
 
-const dummyOrders = [
-  {
-    id: 101,
-    customer: "Alice",
-    items: "Burger, Coke",
-    total: 15.5,
-    paid: true,
-  },
-  {
-    id: 102,
-    customer: "Bob",
-    items: "Pizza, Juice",
-    total: 22.0,
-    paid: false,
-  },
-  {
-    id: 103,
-    customer: "Charlie",
-    items: "Sandwich, Coffee",
-    total: 10.0,
-    paid: true,
-  },
-];
+export default function StaffHome() {
+  const [activePage, setActivePage] = useState('dashboard'); // 'dashboard', 'orders', 'shifts', 'profile'
 
-const StaffHome = () => {
+  // Example stats for dashboard
+  const stats = [
+    { title: 'Total Orders Today', value: '28', color: '#3B82F6', change: '+12% from yesterday' },
+    { title: 'Pending Orders', value: '5', color: '#F59E0B', change: '3 urgent' },
+    { title: 'Delivered Orders', value: '23', color: '#10B981', change: '95% delivery rate' },
+    { title: 'Active Staff', value: '12', color: '#8B5CF6', change: '8 on shift now' },
+  ];
+
+  // Navigation Buttons
+  const navButtons = [
+    { label: 'Dashboard', key: 'dashboard', color: '#F59E0B' }, // orange
+    { label: 'Orders', key: 'orders', color: '#FBBF24' }, // yellow
+    { label: 'Shifts', key: 'shifts', color: '#F59E0B' }, 
+    { label: 'Profile', key: 'profile', color: '#FBBF24' },
+  ];
+
   return (
-    <div className="min-h-screen bg-orange-50 p-4 md:p-10">
-      <h1 className="text-3xl font-bold text-orange-600 mb-6 text-center">
-        Staff Dashboard
-      </h1>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        p: 3,
+        backgroundImage: `url(${sBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        overflowX: 'hidden',
+      }}
+    >
+      {/* Navbar + Logo */}
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 2,
+          mb: 4,
+          flexWrap: 'wrap',
+        }}
+      >
+        <Avatar src={staffLogo} alt="Logo" sx={{ width: 56, height: 56 }} />
 
-      {/* Desktop Table */}
-      <div className="hidden md:block bg-white shadow-lg rounded-lg overflow-hidden">
-        <table className="w-full table-auto text-left">
-          <thead className="bg-orange-200">
-            <tr>
-              <th className="px-4 py-2">Order ID</th>
-              <th className="px-4 py-2">Customer</th>
-              <th className="px-4 py-2">Items</th>
-              <th className="px-4 py-2">Total ($)</th>
-              <th className="px-4 py-2">Paid</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dummyOrders.map((order) => (
-              <tr
-                key={order.id}
-                className="border-b hover:bg-orange-50 transition"
-              >
-                <td className="px-4 py-2">{order.id}</td>
-                <td className="px-4 py-2">{order.customer}</td>
-                <td className="px-4 py-2">{order.items}</td>
-                <td className="px-4 py-2">{order.total.toFixed(2)}</td>
-                <td
-                  className={`px-4 py-2 font-semibold ${
-                    order.paid ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {order.paid ? "Paid" : "Unpaid"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Mobile Cards */}
-      <div className="md:hidden space-y-4">
-        {dummyOrders.map((order) => (
-          <div
-            key={order.id}
-            className="bg-white p-4 rounded-lg shadow-md border-l-4 border-orange-400"
+        {navButtons.map((btn) => (
+          <Button
+            key={btn.key}
+            onClick={() => setActivePage(btn.key)}
+            sx={{
+              width: { xs: '100%', sm: 'auto' }, // w-full on small screens
+              mr: { lg: 2 }, // lg:mr-auto like spacing
+              mb: { xs: 1, sm: 0 },
+              color: activePage === btn.key ? 'white' : btn.color,
+              backgroundColor: activePage === btn.key ? btn.color : 'rgba(255,255,255,0.8)',
+              fontWeight: 'bold',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: activePage === btn.key ? btn.color : 'rgba(255,255,255,0.9)',
+              },
+            }}
           >
-            <div className="flex justify-between mb-2">
-              <span className="font-bold">Order ID:</span>
-              <span>{order.id}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-              <span className="font-bold">Customer:</span>
-              <span>{order.customer}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-              <span className="font-bold">Items:</span>
-              <span>{order.items}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-              <span className="font-bold">Total:</span>
-              <span>${order.total.toFixed(2)}</span>
-            </div>
-            <div
-              className={`flex justify-between font-semibold ${
-                order.paid ? "text-green-600" : "text-red-600"
-              }`}
-            >
-              <span>Status:</span>
-              <span>{order.paid ? "Paid" : "Unpaid"}</span>
-            </div>
-          </div>
+            {btn.label}
+          </Button>
         ))}
-      </div>
-    </div>
-  );
-};
+      </Box>
 
-export default StaffHome;
+      {/* Page Title */}
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 'bold',
+          mb: 3,
+          color: '#FFD700', // bright yellow
+          textShadow: '1px 1px 2px black',
+        }}
+      >
+        {activePage === 'dashboard' && '📊 Dashboard Overview'}
+        {activePage === 'orders' && '📦 Order Management'}
+        {activePage === 'shifts' && '⏰ Staff Shifts'}
+        {activePage === 'profile' && '👤 My Profile'}
+      </Typography>
+
+      {/* Conditional Rendering of Pages */}
+      {activePage === 'dashboard' && (
+        <Grid container spacing={3}>
+          {stats.map((stat, index) => (
+            <Grid item xs={12} sm={6} lg={3} key={index}>
+              <Card
+                sx={{
+                  p: 2,
+                  border: `2px solid ${stat.color}`,
+                  backgroundColor: 'rgba(255,255,255,0.85)',
+                }}
+              >
+                <CardContent>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: stat.color }}>
+                    {stat.title}
+                  </Typography>
+                  <Typography variant="h4" sx={{ fontWeight: 'bold', mt: 1 }}>
+                    {stat.value}
+                  </Typography>
+                  <Typography variant="body2">{stat.change}</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+
+      {activePage === 'orders' && <Order />}
+      {activePage === 'shifts' && <Shifts />}
+      {activePage === 'profile' && <Profile />}
+    </Box>
+  );
+}

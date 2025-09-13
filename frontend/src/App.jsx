@@ -13,7 +13,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import CustomerHome from "./pages/customer/CustomerHome";
 import StaffHome from "./pages/staff/StaffHome";
-
+import StaffLayout from "./pages/staff/StaffLayout";
 export default function App() {
   return (
     <Router>
@@ -24,7 +24,7 @@ export default function App() {
         {/* auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/staff" element={<StaffLayout />}/> 
         {/* app pages (match the navigate() calls in your auth files) */}
         <Route path="/customerhome" element={<CustomerHome />} />
         <Route path="/staffhome" element={<StaffHome />} />
