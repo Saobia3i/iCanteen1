@@ -148,17 +148,7 @@ export default function Order() {
       }}
     >
       {/* Header */}
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <img src={logo} alt="Logo" style={{ width: 60, height: 60 }} />
-        <Box textAlign="center">
-          <Typography variant="h4" fontWeight="bold">
-            📦 Order Management
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            Track and manage customer orders
-          </Typography>
-        </Box>
-      </Box>
+      
 
       {/* Stats */}
       <Box display="flex" gap={2} flexWrap="wrap" justifyContent="center">
