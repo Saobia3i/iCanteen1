@@ -1,8 +1,10 @@
-// src/auth/Login.jsx
+// src/pages/auth/Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Auth.css';
 
-const staffDummy = { email: "staff@canteen.com", password: "staff123" };
+// Dummy staff credentials
+const staffDummy = { email: "staff@canteen.com", password: "staff123", name: "John Staff" };
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,119 +17,103 @@ export default function Login() {
     e.preventDefault();
     setError("");
 
+    let user = null;
+
     if (role === "staff") {
+      // Check staff dummy credentials
       if (email === staffDummy.email && password === staffDummy.password) {
-        navigate("/staffhome");
+        user = { ...staffDummy, userType: "staff" };
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        // Redirect to StaffHome page
+        navigate("/staffhome"); // new
+ // Make sure your route is "/staff" pointing to StaffHome
       } else {
         setError("Invalid staff credentials!");
+        return;
       }
     } else {
-      navigate("/customerhome");
+      // Customer login dummy (you can expand later)
+      user = { name: "Demo Customer", email, userType: "customer" };
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      // Redirect to CustomerHome page
+      navigate("/customerhome"); // Make sure your route is "/customer" pointing to CustomerHome
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-orange-50 p-4">
-      <div
-        className="
-          w-full
-          max-w-md           /* limits size on large screens */
-          bg-white
-          rounded-xl
-          shadow-lg
-          p-8
-        "
-      >
-        <h1 className="text-3xl md:text-4xl font-bold text-orange-600 text-center mb-6">
-          iCanteen Login
-        </h1>
+    <div className="auth-page">
+      {/* Decorative panel */}
+      <div className="auth-decorative-panel">
+        <div className="auth-content">
+          <h1>Welcome Back!</h1>
+          <p>Log in to continue managing your canteen experience.</p>
+        </div>
+      </div>
 
-        {error && (
-          <p className="text-red-600 text-center mb-4 font-semibold">{error}</p>
-        )}
+      {/* Form panel */}
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          <h2 className="auth-title">Login</h2>
 
-        <form onSubmit={handleLogin} className="space-y-6 text-black">
-          {/* Email */}
-          <div>
-            <label className="block font-semibold mb-1">Email</label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            />
-          </div>
+          {error && (
+            <p style={{ color: "red", textAlign: "center", marginBottom: "1rem" }}>
+              {error}
+            </p>
+          )}
 
-          {/* Password */}
-          <div>
-            <label className="block font-semibold mb-1">Password</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            />
-          </div>
+          <form onSubmit={handleLogin} className="login-form">
+            {/* Email */}
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Email</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="auth-input"
+              />
+            </div>
 
-          {/* Role */}
-          <div>
-            <label className="block font-semibold mb-1">Role</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
+            {/* Password */}
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Password</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="auth-input"
+              />
+            </div>
+
+            {/* Role */}
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Role</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="auth-input"
+              >
+                <option value="customer">Customer</option>
+                <option value="staff">Staff</option>
+              </select>
+            </div>
+
+            <button type="submit" className="auth-btn">
+              Login
+            </button>
+          </form>
+
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            Don’t have an account?{" "}
+            <span
+              style={{ color: "#1677ff", cursor: "pointer" }}
+              onClick={() => navigate("/register")}
             >
-              <option value="customer">Customer</option>
-              <option value="staff">Staff</option>
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            className="
-              w-full py-3
-              bg-orange-500 hover:bg-orange-600
-              text-white font-semibold text-lg
-              rounded-md
-              transition
-            "
-          >
-            Login
-          </button>
-        </form>
-
-        <p className="text-center text-gray-700 mt-6">
-          Don’t have an account?{" "}
-          <span
-            className="text-orange-600 font-semibold cursor-pointer hover:underline"
-            onClick={() => navigate("/register")}
-          >
-            Register
-          </span>
-        </p>
+              Register
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

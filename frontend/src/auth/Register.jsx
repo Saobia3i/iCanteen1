@@ -1,8 +1,7 @@
 // src/auth/Register.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const staffDummy = { email: "staff@canteen.com", password: "staff123" };
+import './Auth.css'; // your CSS
 
 export default function Register() {
   const navigate = useNavigate();
@@ -11,140 +10,111 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("customer");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
 
-    if (role === "staff") {
-      // Only allow the hard-coded staff credentials
-      if (email === staffDummy.email && password === staffDummy.password) {
-        navigate("/staffhome");
-      } else {
-        setError(
-          "Staff sign-up requires the special staff email and password."
-        );
-        return;
-      }
-    } else {
-      // Normal customer registration (dummy flow)
-      navigate("/customerhome");
+    // Dummy registration logic (replace with backend later)
+    if (!name || !email || !password) {
+      setError("Please fill in all fields.");
+      return;
     }
+
+    // Save user in localStorage (for demo purposes)
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const existingUser = users.find(u => u.email === email);
+    if (existingUser) {
+      setError("User with this email already exists!");
+      return;
+    }
+
+    const newUser = { name, email, password, role };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    setSuccess("Registration successful! Redirecting to login...");
+    
+    // Redirect to login after short delay
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-orange-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-orange-600 text-center mb-6">
-          iCanteen Register
-        </h1>
+    <div className="auth-page">
+      <div className="auth-decorative-panel">
+        <div className="auth-content">
+          <h1>Join Us!</h1>
+          <p>Create your account to enjoy our canteen services.</p>
+        </div>
+      </div>
 
-        {error && (
-          <p className="text-red-600 text-center mb-4 font-semibold">{error}</p>
-        )}
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          <h2 className="auth-title">Register</h2>
 
-        <form onSubmit={handleRegister} className="space-y-6 text-black">
-          {/* Name */}
-          <div>
-            <label className="block font-semibold mb-1">Name</label>
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            />
-          </div>
+          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+          {success && <p style={{ color: "green", textAlign: "center" }}>{success}</p>}
 
-          {/* Email */}
-          <div>
-            <label className="block font-semibold mb-1">Email</label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            />
-          </div>
+          <form onSubmit={handleRegister} className="login-form">
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Name</label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid #ccc", marginTop: "0.25rem" }}
+              />
+            </div>
 
-          {/* Password */}
-          <div>
-            <label className="block font-semibold mb-1">Password</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            />
-          </div>
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Email</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid #ccc", marginTop: "0.25rem" }}
+              />
+            </div>
 
-          {/* Role */}
-          <div>
-            <label className="block font-semibold mb-1">Role</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="
-                w-full px-4 py-3
-                border border-black
-                rounded-md
-                focus:outline-none focus:ring-2 focus:ring-orange-400
-                hover:shadow-md
-                transition
-              "
-            >
-              <option value="customer">Customer</option>
-              <option value="staff">Staff</option>
-            </select>
-          </div>
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Password</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid #ccc", marginTop: "0.25rem" }}
+              />
+            </div>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="
-              w-full py-3
-              bg-orange-500 hover:bg-orange-600
-              text-white font-semibold text-lg
-              rounded-md
-              transition
-            "
-          >
-            Register
-          </button>
-        </form>
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Role</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                style={{ width: "100%", padding: "0.75rem", borderRadius: "8px", border: "1px solid #ccc", marginTop: "0.25rem" }}
+              >
+                <option value="customer">Customer</option>
+                <option value="staff">Staff</option>
+              </select>
+            </div>
 
-        <p className="text-center text-gray-700 mt-6">
-          Already have an account?{" "}
-          <span
-            className="text-orange-600 font-semibold cursor-pointer hover:underline"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </span>
-        </p>
+            <button type="submit" className="ant-btn-primary">Register</button>
+          </form>
+
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            Already have an account?{" "}
+            <span style={{ color: "#1677ff", cursor: "pointer" }} onClick={() => navigate("/login")}>
+              Login
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

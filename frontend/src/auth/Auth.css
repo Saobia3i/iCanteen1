@@ -1,167 +1,165 @@
-/* Shared Styles for Login.css and Register.css */
+/* ============================
+   Auth Page Full Screen Layout
+============================ */
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f8f8; /* Light background */
+/* Parent container: full viewport */
+.auth-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: #333;
-}
-
-.login-container, .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    min-height: 100vh; /* full height */
     width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #FFD700, #FFA500); /* Warm, food-related gradient */
-    padding: 20px;
-    box-sizing: border-box;
+    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
 }
 
-.login-card, .register-card {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card */
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+/* ----------------------------
+   Decorative Panel (Top/Left)
+---------------------------- */
+.auth-decorative-panel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    max-width: 450px;
-    width: 100%;
-    backdrop-filter: blur(5px); /* Frosty glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 3rem 1.5rem;
+    flex: 1; /* takes half of screen by default */
+    min-height: 50vh;
 }
 
-.logo {
-    margin-bottom: 25px;
+.auth-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* responsive heading */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
-.logo img {
-    width: 80px; /* Adjust logo size */
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 10px;
+.auth-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.9;
 }
 
-.logo h1 {
-    font-size: 2em;
-    color: #E67E22; /* Orange-brown for text */
-    margin: 0;
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 1.8em;
-}
-
-.role-toggle {
+/* ----------------------------
+   Form Panel (Bottom/Right)
+---------------------------- */
+.auth-form-panel {
+    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 5px;
-}
-
-.role-toggle button {
+    align-items: center;
+    padding: 2rem 1rem;
     flex: 1;
-    padding: 12px 15px;
-    border: none;
-    background-color: transparent;
-    color: #666;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    min-height: 50vh;
+    color: #000;
 }
 
-.role-toggle button.active {
-    background-color: #E67E22; /* Active button color */
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input {
+/* Form Card */
+.auth-card {
     width: 100%;
-    padding: 12px 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Form Inputs */
+.auth-card input,
+.auth-card select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 1em;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus {
+    font-size: 1rem;
     outline: none;
-    border-color: #E67E22;
-    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+    transition: all 0.2s ease;
 }
 
-.login-button, .register-button {
+.auth-card input:focus,
+.auth-card select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102,126,234,0.5);
+}
+
+/* Buttons */
+.auth-card button,
+.auth-card .ant-btn-primary {
     width: 100%;
-    padding: 15px;
-    background-color: #F39C12; /* A more vibrant orange for primary action */
+    padding: 0.75rem 1rem;
+    background-color: #69a351;
     color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
     border: none;
     border-radius: 8px;
-    font-size: 1.1em;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 15px;
+    transition: all 0.2s ease;
 }
 
-.login-button:hover, .register-button:hover {
-    background-color: #E67E22;
-    transform: translateY(-2px);
+.auth-card button:hover,
+.auth-card .ant-btn-primary:hover {
+    background-color: #579040;
 }
 
-.forgot-password, .login-link, .register-link {
-    margin-top: 20px;
-    font-size: 0.95em;
-    color: #666;
+/* Links */
+.auth-card a,
+.auth-card span {
+    color: #667eea;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.forgot-password a, .login-link a, .register-link a {
-    color: #E67E22;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.forgot-password a:hover, .login-link a:hover, .register-link a:hover {
+.auth-card a:hover,
+.auth-card span:hover {
     text-decoration: underline;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .login-card, .register-card {
-        padding: 30px 20px;
-        margin: 15px;
+/* ----------------------------
+   Responsive Layout
+---------------------------- */
+
+/* Large screens: split horizontally */
+@media screen and (min-width: 1024px) {
+    .auth-page {
+        flex-direction: row;
     }
-    h2 {
-        font-size: 1.5em;
+
+    .auth-decorative-panel,
+    .auth-form-panel {
+        flex: 1;
+        min-height: auto;
+        height: 100vh; /* full height */
     }
-    .role-toggle button {
-        padding: 10px 12px;
-        font-size: 0.9em;
+
+    .auth-decorative-panel {
+        padding: 4rem;
     }
-    .form-group input, .login-button, .register-button {
-        padding: 12px;
-        font-size: 1em;
+
+    .auth-form-panel {
+        padding: 4rem;
+    }
+}
+
+/* Small devices: vertical stacking */
+@media screen and (max-width: 768px) {
+    .auth-decorative-panel {
+        padding: 2rem 1rem;
+    }
+
+    .auth-form-panel {
+        padding: 2rem 1rem;
+    }
+
+    .auth-card {
+        padding: 1.5rem 1rem;
     }
 }
