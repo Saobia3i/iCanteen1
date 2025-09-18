@@ -1,6 +1,14 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+/*
+  IMPORTANT: imports must match your folder structure:
+  src/auth/Login
+  src/auth/Register
+  src/pages/customer/CustomerHome
+  src/pages/staff/StaffHome
+*/
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import CustomerHome from "./pages/customer/CustomerHome";
