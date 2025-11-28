@@ -1,11 +1,23 @@
-(assets/logo.png)
+<p align="center">
+  <img
+    width="360"
+    height="360"
+    alt="logo"
+    src="https://github.com/user-attachments/assets/bbc18cc2-2c6a-45d0-8d4d-94bd23c0a1da"
+    style="box-shadow: 0 30px 60px rgba(0,0,0,0.5); border-radius: 60px;"
+  />
+</p>
 
-🍱iCanteen: A Smart Canteen Management System
 
-Course: CSE 3100
+
+
+# **🍱 iCanteen: A Smart Canteen Management System**
+
+
+**Course:** CSE 3100
 A web-based system to streamline the operations of institutional canteens — from ordering to staff management and real-time analytics.
 
-📖 Table of Contents
+<ins>**📖 Table of Contents**</ins>
 
 About the Project
 
@@ -35,7 +47,7 @@ Team
 
 License
 
-📌 About the Project
+<ins>**📌 About the Project**</ins>
 
 iCanteen is a full-stack Smart Canteen Management System developed as a course project for CSE 3100.
 It transforms traditional canteen operations by integrating:
@@ -50,7 +62,8 @@ Menu & order management (frontend-ready; backend planned)
 
 Our mission is to reduce order waiting time, digitize operations, and improve customer experience in institutional canteens.
 
-🚀 Key Features
+### <ins><b> Key Features</b></ins>
+
 ✅ Customer-Side
 
 Online food ordering & real-time status tracking (frontend-ready)
@@ -67,7 +80,7 @@ View assigned shifts
 
 View personal profile including salary info (secure, only for logged-in staff)
 
-📊 Analytics & Smart Modules
+<ins><b>📊 Analytics & Smart Modules</b></ins>
 
 Dashboard stats: total orders, pending/delivered orders, active staff
 
@@ -75,7 +88,7 @@ Conditional rendering of pages: Orders, Shifts, Profile
 
 Responsive design with background image for staff pages
 
-🎯 Target Audience
+<ins><b>🎯 Target Audience</b></ins>
 
 Customers: Students, faculty, guests
 
@@ -91,7 +104,7 @@ Staff pages have background image for improved UX
 
 Navigation between pages: Dashboard, Orders, Shifts, Profile
 
-🔗 Technology Stack
+<ins>🔗 Technology Stack</ins>
 
 Frontend:
 
@@ -103,11 +116,11 @@ TailwindCSS for responsive layouts
 
 React Router v6
 
-Backend (planned):
+Backend:
 
 Laravel (PHP REST API)
 
-MySQL / PostgreSQL
+MySQL 
 
 DevOps & Tools:
 
@@ -128,7 +141,7 @@ PHP >= 8 (for backend, future use)
 
 MySQL or PostgreSQL (for backend, future use)
 
-📦 Installation
+**📦 Installation**
 
 Clone the repository:
 
@@ -197,11 +210,19 @@ Open a Pull Request
 
 Please follow existing conventions and include tests where appropriate.
 
-👨‍💻 Team
+👨‍💻 Owner
 
-Saobia Islam (Frontend & React Developer)
+Saobia Islam 
 
-(https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/b6a444c6-e080-4dbd-ad13-7e863cfc6302.svg)
+## ⏱️ WakaTime Tracking
+
+This project was developed across two repositories for the same codebase.
+
+**Total Coding Time (combined): _X hrs Y mins_**  
+_(Sum of both badges below)_
+
+[![wakatime – Repo 1](https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/b6a444c6-e080-4dbd-ad13-7e863cfc6302.svg)](https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/b6a444c6-e080-4dbd-ad13-7e863cfc6302)
+[![wakatime – Repo 2](https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/11db647e-4f0f-4a6a-97f2-dd586675a17f.svg)](https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/11db647e-4f0f-4a6a-97f2-dd586675a17f)
 
 📝 License
 
