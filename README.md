@@ -199,9 +199,9 @@ Please follow existing conventions and include tests where appropriate.
 
 👨‍💻 Team
 
-Mehrab Rahman (Frontend & React Developer)
+Saobia Islam (Frontend & React Developer)
 
-[Other team members if any]
+(https://wakatime.com/badge/user/7f0860ba-774e-43d9-8390-34249079bba4/project/b6a444c6-e080-4dbd-ad13-7e863cfc6302.svg)
 
 📝 License
 
